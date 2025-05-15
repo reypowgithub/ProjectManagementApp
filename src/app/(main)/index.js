@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
+import { ThemeToggle } from "../../component/theme-toggle";
 
 export default function Main() {
   const handleLogout = async () => {
@@ -11,6 +12,7 @@ export default function Main() {
       <Text className="text-gray-900 dark:text-white text-xl mb-4">
         Welcome to the main page!
       </Text>
+      <ThemeToggle />
       <TouchableOpacity
         onPress={handleLogout}
         className="mt-8 bg-black px-6 py-3 rounded-xl"
