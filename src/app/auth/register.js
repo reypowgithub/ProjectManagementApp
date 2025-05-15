@@ -22,12 +22,10 @@ export default function register() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleRegister = async () => {
-
-  };
+  const handleRegister = async () => {};
 
   const handleGotoLogin = () => {
-    router.push("/auth/login");
+    router.replace("/auth/login");
   };
 
   return (
