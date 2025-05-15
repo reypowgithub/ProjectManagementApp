@@ -20,7 +20,8 @@ export default function login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSignIn = async () => {
-    setLoading(true);
+    // setLoading(true);
+    router.push("/(main)");
   };
 
   const handleSignUp = () => {
