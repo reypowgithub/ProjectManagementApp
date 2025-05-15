@@ -6,13 +6,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import "./global.css";
+import "../../../global.css";
 import { useEffect, useState } from "react";
-import { loadFonts } from "./font";
+import { loadFonts } from "../../lib/font";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function login() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
