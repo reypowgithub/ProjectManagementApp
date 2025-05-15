@@ -10,6 +10,7 @@ import "../../../global.css";
 import { useEffect, useState } from "react";
 import { loadFonts } from "../../lib/font";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { router } from "expo-router";
 
 export default function login() {
   const [email, setEmail] = useState("");
@@ -18,9 +19,13 @@ export default function login() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSignIn = async () => {};
+  const handleSignIn = async () => {
+    setLoading(true);
+  };
 
-  const handleSignUp = () => {};
+  const handleSignUp = () => {
+    router.push("/auth/register");
+  };
 
   return (
     <View className="flex-1 px-6 justify-center">
@@ -43,6 +48,7 @@ export default function login() {
             secureTextEntry={!showPassword}
             value={password}
             onChangeText={setPassword}
+            plaeceholderTextColor="#9ca3f"
           />
 
           <TouchableOpacity
