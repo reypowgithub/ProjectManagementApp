@@ -14,6 +14,7 @@ import { loadFonts } from "../../lib/font";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import api from "../../lib/api";
+import Toast from "react-native-toast-message";
 
 export default function register() {
   const [email, setEmail] = useState("");
@@ -41,6 +42,11 @@ export default function register() {
         password,
       });
       console.log("response: ", response);
+      Toast.show({
+        type: "success",
+        text1: `Hello ${name}, welcome to our app👋`,
+        text2: "your account has been created",
+      });
       router.back();
     } catch (error) {
       setError("Register failed. Please try again.");

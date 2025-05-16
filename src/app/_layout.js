@@ -6,6 +6,7 @@ import { Stack } from "expo-router";
 import { loadFonts } from "../lib/font";
 import "../../global.css";
 import { ThemeProvider } from "../component/theme-provider";
+import Toast from "react-native-toast-message";
 
 export default function RootLayout() {
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function RootLayout() {
             >
               <StatusBar style="dark" />
             </Stack>
+            <Toast />
           </SafeAreaView>
         </SafeAreaProvider>
       </ThemeProvider>
