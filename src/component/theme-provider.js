@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { Appearance } from "react-native";
 
 const ThemeContext = createContext();
+
 export const ThemeProvider = ({children}) => {
     const [theme, setThemeState] = useState('system');
     const {setColorScheme} = useColorScheme();

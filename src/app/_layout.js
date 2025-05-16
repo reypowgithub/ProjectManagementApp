@@ -5,6 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 import { loadFonts } from "../lib/font";
 import "../../global.css";
+import { ThemeProvider } from "../component/theme-provider";
 
 export default function RootLayout() {
   useEffect(() => {
@@ -20,20 +21,22 @@ export default function RootLayout() {
 
   return (
     <View style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1 }} edges={["bottom", "top"]}>
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              StatusBarBackgroundColor: "#ffffff",
-              StatusBarStyle: "dark",
-              ContentStyle: { backgroundColor: "#f2f2f2" },
-            }}
-          >
-            <StatusBar style="dark" />
-          </Stack>
-        </SafeAreaView>
-      </SafeAreaProvider>
+      <ThemeProvider>
+        <SafeAreaProvider>
+          <SafeAreaView style={{ flex: 1 }} edges={["bottom", "top"]}>
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                StatusBarBackgroundColor: "#ffffff",
+                StatusBarStyle: "dark",
+                ContentStyle: { backgroundColor: "#f2f2f2" },
+              }}
+            >
+              <StatusBar style="dark" />
+            </Stack>
+          </SafeAreaView>
+        </SafeAreaProvider>
+      </ThemeProvider>
     </View>
   );
 }
