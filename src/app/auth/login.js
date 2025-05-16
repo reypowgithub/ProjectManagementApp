@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { loadFonts } from "../../lib/font";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
+import api from "../../lib/api";
 
 export default function login() {
   const [email, setEmail] = useState("");
@@ -20,8 +21,31 @@ export default function login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSignIn = async () => {
-    // setLoading(true);
-    router.push("/(main)");
+    // router.push("/(main)");
+
+    if (!email || !password) {
+      setError("Please enter email and password");
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    // make api call
+    try {
+      const response = await api.post("/api/auth/login", {
+        email,
+        password,
+      });
+      console.log("response: ", response);
+      router.replace("/(main)");
+    } catch (error) {
+      setError("Login failed. Please try again.");
+      console.error("login error: ", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSignUp = () => {
