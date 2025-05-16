@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { loadFonts } from "../../lib/font";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
+import api from "../../lib/api";
 
 export default function register() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,32 @@ export default function register() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleRegister = async () => {};
+  const handleRegister = async () => {
+    if (!name || !email || !password) {
+      setError("Please fill all the fields");
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    // make api call
+    try {
+      const response = await api.post("/api/auth/register", {
+        name,
+        email,
+        password,
+      });
+      console.log("response: ", response);
+      router.back();
+    } catch (error) {
+      setError("Register failed. Please try again.");
+      console.error("register error: ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleGotoLogin = () => {
     router.replace("/auth/login");
