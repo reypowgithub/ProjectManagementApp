@@ -1,9 +1,21 @@
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 import { ThemeToggle } from "../../component/theme-toggle";
+import { useEffect } from "react";
+import { getAccessToken, removeAccessToken } from "../../lib/auth";
 
 export default function Main() {
+  useEffect(() => {
+    const getToken = async () => {
+      const currentToken = await getAccessToken();
+      console.log("current token: ", currentToken);
+    };
+
+    getToken();
+  }, []);
+
   const handleLogout = async () => {
+    await removeAccessToken();
     router.replace("/auth/login");
   };
 

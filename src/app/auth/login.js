@@ -12,6 +12,7 @@ import { loadFonts } from "../../lib/font";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import api from "../../lib/api";
+import { getAccessToken, setAccessToken } from "../../lib/auth";
 
 export default function login() {
   const [email, setEmail] = useState("");
@@ -19,6 +20,15 @@ export default function login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    const getToken = async () => {
+      const currentToken = await getAccessToken();
+      console.log("current token: ", currentToken);
+    };
+
+    getToken();
+  }, []);
 
   const handleSignIn = async () => {
     // router.push("/(main)");
@@ -38,7 +48,7 @@ export default function login() {
         email,
         password,
       });
-      console.log("response: ", response);
+      await setAccessToken(response.data.accessToken);
       router.replace("/(main)");
     } catch (error) {
       setError("Login failed. Please try again.");
